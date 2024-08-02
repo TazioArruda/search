@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { UserProps } from "../types/user"
-import {MdLocationPion} from "react-icons/md"
+import { UserProps } from "../types/user";
+import { MdLocationPin } from "react-icons/md";
+import classes from "./User.module.css"
 
 const User = ({
     login, 
@@ -9,26 +10,29 @@ const User = ({
     following, 
     location,
 }: UserProps) => {
-    return 
-    <div>
-        <img src={avatar_url} alt={login}/>
-        <h2>{login}</h2>
-        <p>
-            <MdLocationPion/>
-            <span>{location}</span>
-        </p>
-        <div>
-            <div>
-                <p>Seguidores:</p>
-                <p>{followers}</p>
+    return (
+        <div className={classes.user}>
+            <img src={avatar_url} alt={login}/>
+            <h2>{login}</h2>
+            {location && (
+                <p className={classes.location}>
+                <MdLocationPin/>
+                <span>{location}</span>
+            </p>
+            )}
+            <div className={classes.stats}>
+                <div>
+                    <p>Seguidores:</p>
+                    <p className={classes.number}>{followers}</p>
+                </div>
+                <div>
+                    <p>Seguindo:</p>
+                    <p className={classes.number}>{following}</p>
+                </div>
             </div>
-            <div>
-                <p>Seguindo</p>
-                <p>{following}</p>
-            </div>
+            <Link to={`/repos/${login}`}>Ver os melhores projetos</Link>
         </div>
-        <Link to={`/repos/${login}`}>Ver os melhores projetos</Link>
-    </div>
+    );
 };
 
-export default User
+export default User;
