@@ -1,6 +1,7 @@
 import { UserProps } from "../types/user";
 import Search from "../Components/Search"
 import { useState } from "react";
+import {User} from "../Components/User"
 
 const Home = () =>{
 
